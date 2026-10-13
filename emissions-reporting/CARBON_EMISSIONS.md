@@ -1,6 +1,6 @@
 # Carbon Emissions and Computational Sustainability
 
-> The values below come from CodeCarbon in the final Colab run of the notebook. Numbers change slightly every time the notebook is run.
+> The values below come from CodeCarbon in the final Colab run of the notebook (13 October 2026). The raw output is in `emissions.csv` in this folder. Numbers change slightly every time the notebook is run.
 
 ---
 
@@ -49,7 +49,7 @@ Downloading and preprocessing the data in the notebook, calibration, evaluation,
 - [ ] Other
 
 **CPU:**
-AMD EPYC 7B12 (2 virtual CPUs)
+Intel Xeon CPU @ 2.20 GHz (2 virtual CPUs)
 
 **GPU or other accelerator:**
 None (the models train on CPU)
@@ -61,7 +61,7 @@ None (the models train on CPU)
 Google Colab
 
 **Computing location or cloud region:**
-United States (Iowa), as detected by CodeCarbon
+United States (South Carolina), as detected by CodeCarbon
 
 ---
 
@@ -85,13 +85,13 @@ CodeCarbon
 1 (one cross-validation run and one refit, from the final notebook run)
 
 **Total computing time:**
-[From the final notebook run: printed under the cross-validation and refit cells]
+157 seconds (0.043 hours): cross-validation 153 s, final refit 4 s
 
 **Energy used:**
-[From the final notebook run: printed under the cross-validation and refit cells]
+0.00078 kWh (cross-validation 0.00076 kWh, final refit 0.00002 kWh)
 
 **Carbon emissions:**
-[From the final notebook run: printed under the cross-validation and refit cells]. In our test runs, the total was a few grams of CO2e or less (between 0.4 g and 3 g).
+0.00022 kg CO2e in total (about 0.2 g): cross-validation 0.000216 kg CO2e, final refit 0.000005 kg CO2e. In earlier test runs, the total ranged from about 0.2 g to 3 g.
 
 **Source used to determine the carbon emissions of the electricity:**
 CodeCarbon (carbon intensity of the electricity grid at the detected location)

@@ -20,11 +20,12 @@ Originally presented at the [Tackling Climate Change with Machine Learning works
 ## Learning Objectives
 After completing this tutorial, participants should be able to:
 1. Explain what RI is and why it is difficult to forecast.
-2. Derive and understand explainable features from a multi-modal dataset of best-track records (IBTrACS), ERA5 reanalysis, and satellite imagery (GridSat-B1).
+2. Derive and understand interpretable features from a multi-modal dataset containing best-track records (IBTrACS), ERA5 reanalysis, and satellite imagery (GridSat).
 3. Visualize and explore the properties and behavior of tropical cyclones.
 4. Recognize why class imbalance makes standard metrics like accuracy misleading for rare-event problems.
-5. Choose and interpret evaluation metrics suited to rare, high-stakes prediction problems: precision-recall curves, probability of detection, false alarm ratio, and Brier skill score.
+5. Choose and interpret evaluation metrics suited to rare, high-stakes prediction problems: precision–recall curves, probability of detection, false alarm ratio, and Brier skill score.
 6. Critically assess an ML model's real-world limitations.
+7. Explain how such a model should and should not be used, and measure the energy and carbon emissions of training it.
 
 ### Intended Audience
 - Beginner-to-intermediate ML practitioners and students with basic Python knowledge, looking for a hands-on example of applying ML to a real-world, climate-relevant forecasting problem. No prior meteorology background is required.
@@ -80,13 +81,25 @@ We recommend executing this notebook in a Colab environment to manage all necess
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
-To run locally, see:
+To run locally, we recommend [uv](https://docs.astral.sh/uv/), which also installs the right Python version (3.13) for you. With newer Python versions, some of the pinned packages cannot be installed.
 
-➡️ `notebook/tropicalcyclone_rapidintensification.ipynb`
+```bash
+# 1. Install uv (macOS and Linux). On Windows, see https://docs.astral.sh/uv/getting-started/installation/
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
-**Estimated time to execute end-to-end:** about 2 hours.
+# 2. In a new terminal: get the tutorial, set up Python 3.13, and install the packages
+git clone https://github.com/ccai-tropicalcycloneri-tutorial-2026/tropicalcycloneriprediction.git
+cd tropicalcycloneriprediction
+uv venv --python 3.13 --seed      # Python 3.13 environment in .venv (--seed adds pip)
+uv pip install -r requirements.txt jupyter
+uv run jupyter notebook notebook/tropicalcyclone_rapidintensification.ipynb
+```
 
-**Last successfully tested:** [YYYY-MM-DD]
+These steps already install the packages, so comment out the `%pip install` line in the notebook's install cell. When you come back later, run `uv run jupyter notebook` again in the same folder.
+
+**Estimated time to complete:** about 1.5 hours, including the sections marked *optional reading*.
+
+**Last successfully tested:** 2026-10-13
 
 ### Model Information
 This submission involves a machine-learning model (logistic regression and XGBoost classifiers for 24-hour RI prediction).
