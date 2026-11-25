@@ -138,15 +138,15 @@ Usage of this tutorial is subject to the MIT License.
 ## Cite
 
 ### Plain Text
-Ghewari, S., & Mitra, A. (2026). Tropical Cyclone Rapid Intensification (RI) Prediction using Machine Learning [Tutorial]. NeurIPS 2026 Workshop on Tackling Climate Change with Machine Learning. https://github.com/ccai-tropicalcycloneri-tutorial-2026/tropicalcycloneriprediction
+Ghewari, S., & Mitra, A. (2026). Tropical Cyclone Rapid Intensification (RI) Prediction using Machine Learning [Tutorial]. NeurIPS 2026 Workshop on Tackling Climate Change with Machine Learning. https://github.com/climatechange-ai-tutorials/tropical-cyclone-rapid-intensification-prediction
 
 ### BibTeX
 ```bibtex
-@inproceedings{ghewari2026tropical,
-  title     = {Tropical Cyclone Rapid Intensification (RI) Prediction using Machine Learning},
-  author    = {Ghewari, Sukhada and Mitra, Adway},
-  booktitle = {NeurIPS 2026 Workshop on Tackling Climate Change with Machine Learning},
-  year      = {2026},
-  url       = {https://github.com/ccai-tropicalcycloneri-tutorial-2026/tropicalcycloneriprediction}
+@misc{ghewari2026tropical,
+  title        = {Tropical Cyclone Rapid Intensification (RI) Prediction using Machine Learning},
+  author       = {Ghewari, Sukhada and Mitra, Adway},
+  year         = {2026},
+  howpublished = {Tutorial at the NeurIPS 2026 Workshop on Tackling Climate Change with Machine Learning},
+  url          = {https://github.com/climatechange-ai-tutorials/tropical-cyclone-rapid-intensification-prediction}
 }
 ```
