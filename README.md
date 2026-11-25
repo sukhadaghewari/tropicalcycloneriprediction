@@ -1,5 +1,7 @@
 # Tropical Cyclone Rapid Intensification (RI) Prediction using Machine Learning
 
+> **Note:** This is the author's personal copy of the tutorial. The official version is at [climatechange-ai-tutorials/tropical-cyclone-rapid-intensification-prediction](https://github.com/climatechange-ai-tutorials/tropical-cyclone-rapid-intensification-prediction).
+
 ![Python](https://img.shields.io/badge/language-Python%203.13-blue)
 ![Jupyter Notebook](https://img.shields.io/badge/Jupyter-Notebook-orange)
 ![XGBoost](https://img.shields.io/badge/XGBoost-3.4-red)
@@ -123,30 +125,23 @@ For more details, go to:
 
 ---
 
-## Contribute to this tutorial
-
-Please refer to these [GitHub instructions](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project#about-forking) to open a pull request via the "fork and pull request" workflow.
-
-Pull requests will be reviewed by members of the Climate Change AI Tutorials team for relevance, accuracy, and conciseness.
-
-## Climate Change AI Tutorials
-Check out the [tutorials page](https://www.climatechange.ai/tutorials?) on our website for a full list of tutorials demonstrating how AI can be used to tackle problems related to climate change.
-
 ## License
 Usage of this tutorial is subject to the MIT License.
 
 ## Cite
 
 ### Plain Text
-Ghewari, S., & Mitra, A. (2026). Tropical Cyclone Rapid Intensification (RI) Prediction using Machine Learning [Tutorial]. NeurIPS 2026 Workshop on Tackling Climate Change with Machine Learning. https://github.com/climatechange-ai-tutorials/tropical-cyclone-rapid-intensification-prediction
+Ghewari, S., & Mitra, A. (2026). Tropical Cyclone Rapid Intensification (RI) Prediction using Machine Learning [Tutorial]. In Tackling Climate Change with Machine Learning Workshop at NeurIPS 2026. Climate Change AI.
 
 ### BibTeX
 ```bibtex
 @misc{ghewari2026tropical,
-  title        = {Tropical Cyclone Rapid Intensification (RI) Prediction using Machine Learning},
-  author       = {Ghewari, Sukhada and Mitra, Adway},
-  year         = {2026},
-  howpublished = {Tutorial at the NeurIPS 2026 Workshop on Tackling Climate Change with Machine Learning},
-  url          = {https://github.com/climatechange-ai-tutorials/tropical-cyclone-rapid-intensification-prediction}
+  title={Tropical Cyclone Rapid Intensification (RI) Prediction using Machine Learning},
+  author={Ghewari, Sukhada and Mitra, Adway},
+  year={2026},
+  organization={Climate Change AI},
+  type={Tutorial},
+  booktitle={Tackling Climate Change with Machine Learning Workshop at NeurIPS 2026},
+  howpublished={\url{https://github.com/climatechange-ai-tutorials/tropical-cyclone-rapid-intensification-prediction}}
 }
 ```
