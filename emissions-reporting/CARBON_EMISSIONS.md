@@ -1,6 +1,6 @@
 # Carbon Emissions and Computational Sustainability
 
-> The values below come from CodeCarbon in the final Colab run of the notebook (13 October 2026). The raw output is in `emissions.csv` in this folder. Numbers change slightly every time the notebook is run.
+> The values below come from CodeCarbon in the final Colab run of the notebook (25 November 2026). The raw output is in `emissions.csv` in this folder: the last two rows are this run, and the first two rows are an earlier run in the same Colab session. Numbers change slightly every time the notebook is run.
 
 ---
 
@@ -34,7 +34,7 @@ CodeCarbon tracked the two training steps in the notebook: 5-fold cross-validati
 
 ### What is not included?
 
-Downloading and preprocessing the data in the notebook, calibration, evaluation, and plotting. The one-time precomputation of the ERA5 and GridSat-B1 features (published in the `dataset_v4` release) and early development runs were not tracked.
+Downloading and preprocessing the data in the notebook, calibration, evaluation, and plotting. The one-time precomputation of the ERA5 and GridSat-B1 features (published in this repository's GitHub release) and early development runs were not tracked.
 
 ---
 
@@ -61,7 +61,7 @@ None (the models train on CPU)
 Google Colab
 
 **Computing location or cloud region:**
-United States (South Carolina), as detected by CodeCarbon
+United States (Iowa), as detected by CodeCarbon
 
 ---
 
@@ -85,13 +85,13 @@ CodeCarbon
 1 (one cross-validation run and one refit, from the final notebook run)
 
 **Total computing time:**
-157 seconds (0.043 hours): cross-validation 153 s, final refit 4 s
+122 seconds (0.034 hours): cross-validation 120 s, final refit 2 s
 
 **Energy used:**
-0.00078 kWh (cross-validation 0.00076 kWh, final refit 0.00002 kWh)
+0.00060 kWh (cross-validation 0.00059 kWh, final refit 0.00001 kWh)
 
 **Carbon emissions:**
-0.00022 kg CO2e in total (about 0.2 g): cross-validation 0.000216 kg CO2e, final refit 0.000005 kg CO2e. In earlier test runs, the total ranged from about 0.2 g to 3 g.
+0.00027 kg CO2e in total (about 0.27 g): cross-validation 0.000268 kg CO2e, final refit 0.000004 kg CO2e. In earlier test runs, the total ranged from about 0.2 g to 3 g.
 
 **Source used to determine the carbon emissions of the electricity:**
 CodeCarbon (carbon intensity of the electricity grid at the detected location)

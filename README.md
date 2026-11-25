@@ -98,7 +98,7 @@ These steps already install the packages, so comment out the `%pip install` line
 
 **Estimated time to complete:** about 1.5 hours, including the sections marked *optional reading*.
 
-**Last successfully tested:** 2026-11-16
+**Last successfully tested:** 2026-11-25
 
 ### Model Information
 This submission involves a machine-learning model (logistic regression and XGBoost classifiers for 24-hour RI prediction).

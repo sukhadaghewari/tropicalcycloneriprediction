@@ -33,7 +33,7 @@
 - **Model performance measures:**
   - *Primary:* PR-AUC (average precision). Its no-skill value is the RI rate.
   - *Supporting:* Brier skill score (BSS) against training climatology, and probability of detection (POD) and false alarm ratio (FAR) at the decision threshold.
-- **Decision thresholds:** 0.120, the threshold with the highest F2 score on the validation years. F2 weights missing an RI event more heavily than a false alarm. F2 stays within 0.01 of its best value for thresholds from about 0.11 to 0.17.
+- **Decision thresholds:** 0.142, the threshold with the highest F2 score on the validation years. F2 weights missing an RI event more heavily than a false alarm. F2 stays within 0.01 of its best value for thresholds from about 0.10 to 0.16.
 - **Variation approaches:** Cross-validation scores are reported as mean ± standard deviation across 5 storm-grouped folds. A feature-group ablation compares each data source on its own and the full model without it.
 
 ## Evaluation Data
@@ -49,18 +49,18 @@ Seasons 1980–2010: 57,178 observations from 2,816 storms, RI rate 7.0%. No sto
 
 | Model | PR-AUC (no skill 0.102) | BSS |
 |---|---|---|
-| Climatology | 0.102 | 0.00 |
+| Climatology | 0.102 | 0.000 |
 | Wind-trend rule (yes/no) | 0.179 | n/a |
-| Logistic regression (calibrated) | 0.331 | +0.16 |
-| **XGBoost (calibrated)** | **0.420** | **+0.22** |
+| Logistic regression (calibrated) | 0.330 | +0.161 |
+| **XGBoost (calibrated)** | **0.421** | **+0.225** |
 
-  At the 0.120 threshold, XGBoost raises an alarm for 24.2% of test observations, with POD = 0.73 and FAR = 0.69 (precision 0.31, about three times the RI rate). Validation results are similar (POD 0.76, FAR 0.70, precision 0.31). On the test years, the calibrated probabilities stay close to the observed frequencies (mean predicted 0.094 vs observed 0.102).
+  At the 0.142 threshold, XGBoost raises an alarm for 25.9% of test observations, with POD = 0.75 and FAR = 0.70 (precision 0.30, about three times the RI rate). Validation results are similar (POD 0.78, FAR 0.70, precision 0.30). On the test years, the calibrated probabilities stay close to the observed frequencies (mean predicted 0.095 vs observed 0.102).
 
 - **Intersectional results (test years):**
-  - *By basin:* PR-AUC ranges from 0.33 (South Pacific) to 0.51 (North Indian), 3.3 to 4.9 times each basin's RI rate. Basins with few storms have less certain results.
-  - *By storm strength:* best for tropical storms and Category 1–2 hurricanes (PR-AUC 0.41–0.52), weak for tropical depressions and Category 4 hurricanes (PR-AUC about 0.13–0.14), where RI is rare.
-  - *By RI stage:* catches 51% of RI onsets and 82% of ongoing RI cases.
-  - *By year:* PR-AUC between 0.31 and 0.50, 3.6 to 4.8 times each year's RI rate. Relative to the RI rate, skill is a little lower in 2022–2025 (3.6 to 3.9 times) than in 2016–2021 (4.0 to 4.8 times).
+  - *By basin:* PR-AUC ranges from 0.33 (South Pacific) to 0.52 (North Indian), 3.3 to 5.0 times each basin's RI rate. Basins with few storms have less certain results.
+  - *By storm strength:* best for tropical storms and Category 1–2 hurricanes (PR-AUC 0.42–0.53), weak for tropical depressions and Category 4 hurricanes (PR-AUC about 0.12–0.15), where RI is rare.
+  - *By RI stage:* catches 55% of RI onsets and 84% of ongoing RI cases.
+  - *By year:* PR-AUC between 0.30 and 0.50, 3.5 to 4.8 times each year's RI rate. Relative to the RI rate, skill is a little lower in 2022–2025 (3.5 to 4.0 times) than in 2016–2021 (4.1 to 4.8 times).
 
 ## Ethical Considerations
 - Missed RI events can lead to under-prepared communities, and frequent false alarms can reduce trust in warnings. This model is a teaching tool and must not replace official forecasts.
