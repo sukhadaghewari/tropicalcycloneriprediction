@@ -1,10 +1,10 @@
 # Datasheet - Tropical Cyclone RI Dataset (IBTrACS + ERA5 + GridSat-B1)
 > The following datasheet format and content is taken from Gebru et al., [_Datasheets for Datasets (2021)_](https://arxiv.org/abs/1803.09010)
-> and the repository by [Cao et. al(2020)](https://github.com/TristaCao/into_inclusivecoref/blob/master/GICoref/datasheet-gicoref.md).
+> and the repository by [Cao et al. (2020)](https://github.com/TristaCao/into_inclusivecoref/blob/master/GICoref/datasheet-gicoref.md).
 
 This dataset describes tropical cyclones every 6 hours from 1980 to 2025 and is used to predict rapid intensification (RI): an increase in maximum sustained wind of at least 30 kt in the next 24 hours (Kaplan & DeMaria, 2003). It combines three public sources:
 
-- **IBTrACS v04r01** (Knapp et al., 2010): storm positions and intensities. The notebook downloads this directly from NOAA NCEI.
+- **IBTrACS v04r01** (Knapp et al., 2010): storm positions and intensities. The notebook uses a fixed copy from NOAA NCEI (18 August 2026), saved in the GitHub release.
 - **ERA5** (Hersbach et al., 2020): environmental features (sea surface temperature, sea level pressure, water vapor, and wind shear) around each storm. Precomputed and published as `era5_features.parquet`.
 - **GridSat-B1** (Knapp et al., 2011): cold-cloud fractions from infrared satellite images near each storm center. Precomputed and published as `satellite_features.parquet`.
 
@@ -12,13 +12,13 @@ The two precomputed files are published in the [`dataset_v4` GitHub release](htt
 
 ## Motivation
 - **For what purpose was the dataset created?** To teach how to build an ML model for 24-hour RI prediction from public, physically meaningful features, in the spirit of the Statistical Hurricane Intensity Prediction Scheme (SHIPS; DeMaria & Kaplan, 1999). Precomputing the ERA5 and satellite features lets learners run the tutorial without downloading large gridded datasets.
-- **Who created this dataset (e.g., which team, research group) and on behalf of which entity (e.g., company, institution, organization)?** [Anonymized for review.] The underlying data were created by NOAA NCEI (IBTrACS, GridSat-B1) and ECMWF / Copernicus Climate Change Service (ERA5).
-- **Funding/support** [Anonymized for review.]
+- **Who created this dataset (e.g., which team, research group) and on behalf of which entity (e.g., company, institution, organization)?** Sukhada Ghewari (Independent Researcher) and Adway Mitra (Indian Institute of Technology, Kharagpur). The underlying data were created by NOAA NCEI (IBTrACS, GridSat-B1) and ECMWF / Copernicus Climate Change Service (ERA5).
+- **Funding/support** None.
 
 ## Composition
 - **What do the instances that comprise the dataset represent (e.g., documents, photos, people, countries)?** Each instance is one tropical cyclone observation: one storm at one 6-hourly synoptic time (00, 06, 12, or 18 UTC).
 - **How many instances are there in total (of each type, if appropriate)?** 78,472 labeled observations from 4,105 storms (1980–2025), of which 6,177 (7.9%) are RI.
-- **Does the dataset contain all possible instances or is it a sample (not necessarily random) of instances from a larger set?** It is a filtered subset of IBTrACS since 1980. We keep main tracks, standard 6-hourly synoptic times, tropical systems (`nature == 'TS'`), observations over water (`dist2land > 0`), and observations with a USA agency wind value. Observations without a known wind 24 hours later are dropped because their label is unknown (about 19% of filtered rows). Storms approaching land or becoming extratropical are therefore under-represented, which is standard in RI studies.
+- **Does the dataset contain all possible instances or is it a sample (not necessarily random) of instances from a larger set?** It is a filtered subset of IBTrACS since 1980. We keep main tracks, standard 6-hourly synoptic times, tropical systems (`nature == 'TS'`), observations over water (`dist2land > 0`), observations whose intensity was observed rather than interpolated (`iflag`), observations with a USA agency wind value, and seasons up to 2025 (the 2025 season is only partly included, see Collection Process). Observations without a known wind 24 hours later are dropped because their label is unknown (about 19% of filtered rows). Storms approaching land or becoming extratropical are therefore under-represented, which is standard in RI studies.
 - **What data does each instance consist of?** Derived features, not raw data:
   - *IBTrACS:* current wind, Saffir-Simpson category, distance to land, location and day of year (encoded with sine/cosine), and wind values and changes 6, 12, and 24 hours earlier.
   - *ERA5:* sea surface temperature, sea level pressure, and total column water vapor averaged within 200 km of the storm center, and vertical wind shear between 850 hPa and 200 hPa averaged over a 200–800 km ring. The file also contains the 850 and 200 hPa winds used to compute the shear, but they are not used as model features.
@@ -28,7 +28,7 @@ The two precomputed files are published in the [`dataset_v4` GitHub release](htt
 - **Are relationships between individual instances made explicit (e.g., users' movie ratings, social network links)?** Yes. Observations from the same storm share a storm ID (`sid`) and are ordered by time (`iso_time`).
 - **Are there recommended data splits (e.g., training, development/validation, testing)?** Yes, by season: training 1980–2010 (57,178 observations), validation 2011–2015 (7,496), and test 2016–2025 (13,798). No storm appears in more than one split. Model selection uses 5-fold cross-validation on the training years, grouped by storm.
 - **Are there any errors, sources of noise, or redundancies in the dataset?** Best-track intensities are estimates and can be revised after a season. Observing methods (satellites, aircraft reconnaissance) have improved over time, which may affect how RI is recorded. ERA5 is a model-based reanalysis and does not fully resolve the storm core. Satellite coverage and quality vary by region and year. Several features are strongly related to each other (for example, current and lagged wind).
-- **Is the dataset self-contained, or does it link to or otherwise rely on external resources (e.g., websites, tweets, other datasets)?** It relies on external resources. IBTrACS is downloaded live from NOAA NCEI, so newer IBTrACS updates may change the data slightly. The ERA5 example in the notebook reads the public ARCO-ERA5 store on Google Cloud. The precomputed feature files are hosted in this repository's GitHub release. Terms of use of each source apply (see Distribution).
+- **Is the dataset self-contained, or does it link to or otherwise rely on external resources (e.g., websites, tweets, other datasets)?** It relies on external resources. IBTrACS is read from a fixed copy of the NOAA NCEI file (18 August 2026) in the GitHub release (`all_basins_since_1980.csv`), so the results do not change when NOAA updates its file. The ERA5 example in the notebook reads the public ARCO-ERA5 store on Google Cloud. The precomputed feature files are hosted in this repository's GitHub release. Terms of use of each source apply (see Distribution).
 - **Does the dataset contain data that might be considered confidential (e.g., data that is protected by legal privilege or by doctor–patient confidentiality, data that includes the content of individuals' non-public communications)?** No.
 - **Does the dataset contain data that, if viewed directly, might be offensive, insulting, threatening, or might otherwise cause anxiety?** No. It describes physical storm properties. Some storms caused loss of life, which the tutorial mentions for context.
 
@@ -39,7 +39,7 @@ The dataset does not relate to people, so the remaining questions in this sectio
 - **What mechanisms or procedures were used to collect the data (e.g., hardware apparatuses or sensors, manual human curation, software programs, software APIs)**? Python scripts (xarray, NumPy, pandas) that read IBTrACS, ERA5, and GridSat-B1 and compute area averages at each storm time.
 - **If the dataset is a sample from a larger set, what was the sampling strategy (e.g., deterministic, probabilistic with specific sampling probabilities)**? Deterministic filtering, as described under Composition.
 - **Who was involved in the data collection process (e.g., students, crowdworkers, contractors) and how were they compensated (e.g., how much were crowdworkers paid)?** The tutorial authors. No crowdworkers were involved.
-- **Over what timeframe was the data collected?** Storm seasons 1980–2025. The features were computed in 2026.
+- **Over what timeframe was the data collected?** Storm seasons 1980–2025. The features were computed in 2026. The 2025 season is only partly included: when the data were prepared, IBTrACS still marked many 2025 storms as provisional, and only final (`main`) tracks are used.
 - **Were any ethical review processes conducted (e.g., by an institutional review board)?** Not applicable. The data contain no information about people.
 
 ## Preprocessing/cleaning/labeling
@@ -74,6 +74,6 @@ The dataset does not relate to people, so the remaining questions in this sectio
 ## References
 - DeMaria, M., & Kaplan, J. (1999). An Updated Statistical Hurricane Intensity Prediction Scheme (SHIPS) for the Atlantic and Eastern North Pacific Basins. *Weather and Forecasting*, 14(3), 326–337. https://doi.org/10.1175/1520-0434%281999%29014%3C0326:AUSHIP%3E2.0.CO;2
 - Kaplan, J., & DeMaria, M. (2003). Large-Scale Characteristics of Rapidly Intensifying Tropical Cyclones in the North Atlantic Basin. *Weather and Forecasting*, 18(6), 1093–1108. https://doi.org/10.1175/1520-0434%282003%29018%3C1093:LCORIT%3E2.0.CO;2
-- Knapp, K. R., et al. (2010). The International Best Track Archive for Climate Stewardship (IBTrACS). *Bulletin of the American Meteorological Society*, 91(3), 363–376. https://doi.org/10.1175/2009BAMS2755.1
+- Knapp, K. R., et al. (2010). The International Best Track Archive for Climate Stewardship (IBTrACS): Unifying Tropical Cyclone Data. *Bulletin of the American Meteorological Society*, 91(3), 363–376. https://doi.org/10.1175/2009BAMS2755.1
 - Knapp, K. R., et al. (2011). Globally Gridded Satellite Observations for Climate Studies. *Bulletin of the American Meteorological Society*, 92(7), 893–907. https://doi.org/10.1175/2011BAMS3039.1
 - Hersbach, H., et al. (2020). The ERA5 global reanalysis. *Quarterly Journal of the Royal Meteorological Society*, 146(730), 1999–2049. https://doi.org/10.1002/qj.3803
