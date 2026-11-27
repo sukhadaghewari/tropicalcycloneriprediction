@@ -1,6 +1,6 @@
 # Model Card - Calibrated XGBoost for 24-hour Tropical Cyclone RI Prediction
 > The outline follows Figure 1 of [Mitchell et al., Model Cards for Model Reporting (2019)](https://arxiv.org/abs/1810.03993).
-> Numbers are from a run of the tutorial notebook. Because XGBoost trains in parallel, results can differ slightly between computers: about ±0.01 for PR-AUC and BSS, and about ±0.02 for threshold-based numbers such as POD and FAR.
+> Numbers are from the final Colab run of the tutorial notebook. Results can differ slightly on other types of computers, because processors round numbers in slightly different ways: about ±0.01 for PR-AUC and BSS, and about ±0.02 for threshold-based numbers such as POD and FAR.
 
 ## Model Details
 - **Person or organization developing model:** Sukhada Ghewari (Independent Researcher) and Adway Mitra (Indian Institute of Technology, Kharagpur)
